@@ -30,11 +30,11 @@ void DataBase::CreatBaseDDataBase()
 		{
 			sqlQuery.exec("CREATE TABLE user (id INTEGER PRIMARY KEY AUTOINCREMENT,name TEXT NOT NULL UNIQUE,password TEXT NOT NULL,profile TEXT,favicon TEXT,permission INT DEFAULT 0)");
 			sqlQuery.prepare("INSERT INTO user (id,name, password, profile,favicon, permission) VALUES(:id,:name,:password,:profile,:favicon,:permission)");
-			sqlQuery.bindValue(":id", 0);
+			sqlQuery.bindValue(":id", 1);
 			sqlQuery.bindValue(":name", "admin");
 			sqlQuery.bindValue(":password", "admin");
 			sqlQuery.bindValue(":profile", QString::fromLocal8Bit("œµÕ≥ƒ¨»œ’À∫≈"));
-			sqlQuery.bindValue(":favicon", "0.svg");			
+			sqlQuery.bindValue(":favicon", "1.svg");			
 			sqlQuery.bindValue(":permission", 2);
 			sqlQuery.exec();
 			qInfo() << "Creat Base User Table.Add admin user.";

@@ -30,12 +30,12 @@ public slots:
 	bool UserChangePassword(QString, QString);
 	bool UserChangeFavicon(QString);
 	bool SendUserMessage(int, QString, int);
-	void ReceiveUserMessage(ChatUser*, QString, int);
+	void ReceiveUserMessage(ChatUser*, QString, int, int);
 	void ReceiveUserlist(QString);
 signals:
 	void VisitorConversionUser(ChatUser*);
 	void UserConversionVisitor(ChatUser*);
-	void UserMessageToServer(ChatUser*, QString, int);
+	void UserMessageToServer(ChatUser*, QString, int, int);
 	void ShowUserMessage(bool, QString, int);
 	void ShowUserList(QString);
 	void ShowUserInfo(QString);

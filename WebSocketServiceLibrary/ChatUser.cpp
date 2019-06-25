@@ -42,22 +42,23 @@ bool ChatUser::SendUserMessage(int type, QString content, int toID)
 	QJsonArray jsonArray;
 	jsonArray.insert(0, user.ConversionJson());
 	jsonArray.insert(1, message.ConversionJson());
-	emit UserMessageToServer(this, QJsonDocument(jsonArray).toJson(), toID);
+	emit UserMessageToServer(this, QJsonDocument(jsonArray).toJson(), user.ID, toID);
 	return true;
 }
 
-void ChatUser::ReceiveUserMessage(ChatUser* chatUser, QString message, int toID)
+void ChatUser::ReceiveUserMessage(ChatUser* chatUser, QString message, int fromID, int toID)
 {
 	if (toID == 0)
 	{
 		emit ShowUserMessage(this == chatUser, message, toID);
 	}
-	else
+	else if (user.ID == toID)
 	{
-		if (user.ID == toID || this == chatUser)
-		{
-			emit ShowUserMessage(this == chatUser, message, toID);
-		}
+		emit ShowUserMessage(this == chatUser, message, fromID);
+	}
+	else if (user.ID == fromID)
+	{
+		emit ShowUserMessage(this == chatUser, message, toID);
 	}
 }
 void ChatUser::ReceiveUserlist(QString userlist)
@@ -192,7 +193,9 @@ bool ChatUser::UserChangePassword(QString oldpassword, QString newpassword)
 			{
 				user = db->UserSelectAll(u.ID);
 				emit ShowServerTips(1, QString::fromLocal8Bit("用户密码更改成功!"));
+				return true;
 			}
+			return false;
 		}
 		emit ShowServerTips(2, QString::fromLocal8Bit("密码错误!<br/>用户密码更改失败!"));
 		return false;
