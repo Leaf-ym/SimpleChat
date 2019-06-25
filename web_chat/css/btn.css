@@ -1,0 +1,72 @@
+#picBox {
+    cursor: pointer;
+    float: left;
+    margin: 8px 0px 0px 20px;
+    width: 24px;
+    height: 24px;
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+}
+
+.pic-1 {
+    width: 24px;
+    height: 24px;
+    background-color: rgba(193, 183, 255, 1.00);
+}
+
+.pic-2 {
+    float: left;
+    width: 0px;
+    height: 0px;
+    border-width: 3px;
+    border-style: solid;
+    border-color: rgba(255, 255, 255, 0.00) rgba(255, 255, 255, 1.00) rgba(255, 255, 255, 1.00) rgba(255, 255, 255, 0.00);
+}
+
+.pic-3 {
+    float: left;
+    width: 0px;
+    height: 0px;
+    border-width: 3px;
+    border-style: solid;
+    border-color: rgba(255, 255, 255, 0.00) rgba(255, 255, 255, 0.00) rgba(255, 255, 255, 1.00) rgba(255, 255, 255, 1.00);
+}
+
+.pic-4 {
+    float: left;
+    width: 0px;
+    height: 0px;
+    border-width: 3px;
+    border-style: solid;
+    border-color: rgba(255, 255, 255, 1.00) rgba(255, 255, 255, 1.00) rgba(255, 255, 255, 0.00) rgba(255, 255, 255, 0.00);
+}
+
+.pic-5 {
+    float: left;
+    width: 0px;
+    height: 0px;
+    border-width: 3px;
+    border-style: solid;
+    border-color: rgba(255, 255, 255, 1.00) rgba(255, 255, 255, 0.00) rgba(255, 255, 255, 0.00) rgba(255, 255, 255, 1.00);
+}
+
+.pic-6 {
+    float: left;
+    width: 0px;
+    height: 0px;
+    border-width: 6px;
+    border-style: solid;
+    border-color: rgba(255, 255, 255, 0.00) rgba(167, 133, 242, 1.00) rgba(167, 133, 242, 1.00) rgba(148, 56, 255, 1.00);
+}
+
+.pic-7 {
+    float: left;
+    width: 0px;
+    height: 0px;
+    border-width: 6px;
+    border-style: solid;
+    border-color: rgba(255, 255, 255, 0.00) rgba(167, 133, 242, 1.00) rgba(167, 133, 242, 1.00) rgba(148, 56, 255, 1.00);
+}

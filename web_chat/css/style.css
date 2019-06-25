@@ -1,0 +1,890 @@
+* {
+    font-family: '微软雅黑';
+}
+
+body {
+    padding: 0;
+    margin: 0;
+}
+
+a {
+    user-select: none;
+    text-decoration: none;
+    color: rgba(100, 100, 200, 0.80);
+}
+
+a:hover {
+    text-decoration: none;
+    color: rgba(100, 100, 200, 0.80);
+}
+
+a:active {
+    text-decoration: none;
+    color: rgba(100, 100, 200, 0.80);
+}
+
+/***********************主模块*************************/
+#whole {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(230, 230, 230, 1.00);
+    transform: translateX(0px);
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+}
+
+.nav {
+    float: none;
+    width: 100%;
+    height: 60px;
+}
+
+.nav-bar {
+    height: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+#toolBar {
+    cursor: move;
+    max-width: 1400px;
+    margin: 0 auto;
+    height: 40px;
+    background-color: rgba(240, 240, 240, 1.00);
+}
+
+.fun-box {
+    cursor: pointer;
+    opacity: 1.0;
+    float: left;
+    width: 24px;
+    height: 24px;
+    border: none;
+    margin: 8px 0px 0px 12px;
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+}
+
+.right-fun {
+    float: right;
+    width: 200px;
+    height: 24px;
+    margin-top: 8px;
+    background-color: rgba(255, 255, 255, 1.00);
+}
+
+#connect {
+    border: none;
+    outline: none;
+    position: relative;
+    text-align: center;
+    height: 24px;
+    width: 24px;
+    cursor: pointer;
+    float: left;
+    margin-left: 20px;
+    margin-top: 8px;
+    font-size: 60%;
+    color: rgba(255, 255, 255, 1.00);
+    padding: 0;
+    line-height: 24px;
+    background-color: rgba(255, 163, 94, 1.00);
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+}
+
+#send {
+    float: right;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    border: none;
+    outline: none;
+    user-select: none;
+    margin-right: 20px;
+    margin-top: 6px;
+    text-align: center;
+    width: 80px;
+    height: 28px;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 1.00);
+    line-height: 24px;
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+}
+
+#clear {
+    float: right;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    user-select: none;
+    border: none;
+    outline: none;
+    margin-right: 8px;
+    margin-top: 6px;
+    text-align: center;
+    width: 80px;
+    height: 28px;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 1.00);
+    line-height: 24px;
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+}
+
+#editBox {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    max-width: 1400px;
+    height: 100px;
+    border: 1px solid rgba(220, 220, 220, 1.00);
+    background-color: rgba(255, 255, 255, 1.00);
+}
+
+#edit {
+    width: 98%;
+    height: 100%;
+    padding: 10px;
+    margin: 0;
+    outline: none;
+    border: none;
+    resize: none;
+    overflow-y: auto;
+    font-size: 14px;
+    color: rgba(50, 50, 50, 1.00);
+    background-color: rgba(255, 255, 255, 1.00);
+}
+
+#edit::-webkit-scrollbar {
+    display: none;
+}
+
+/*************************左边栏****************************/
+
+#leftMenu {
+    position: fixed;
+    top: 0;
+    left: -300px;
+    bottom: 0;
+    display: blocks;
+    width: 300px;
+    height: 100%;
+    padding: 0;
+    border-right: 1px solid rgba(230, 230, 230, 1.00);
+    background-color: rgba(250, 250, 250, 1.00);
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+}
+
+.left-in {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
+
+.left-in::-webkit-scrollbar {
+    display: none
+}
+
+.menu-title {
+    cursor: pointer;
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: bold;
+    margin-left: 20px;
+    color: rgba(50, 50, 50, 1.00);
+}
+
+.menu-title2 {
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: bold;
+    margin-left: 20px;
+    color: rgba(60, 60, 60, 1.00);
+}
+
+.left-article {
+    font-size: 12px;
+    line-height: 20px;
+    padding: 0 20px 0 20px;
+    color: rgba(50, 50, 50, 1.00);
+}
+
+.per-box {
+    float: left;
+    height: 40px;
+    width: 260px;
+    margin: 0 20px 20px 20px;
+    border: 1px solid rgba(180, 180, 180, 1.00);
+    background-color: rgba(240, 240, 240, 1.00);
+    transform: scale(1);
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+}
+
+.per-h {
+    float: left;
+    overflow: hidden;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(200, 200, 200, 1.00);
+}
+
+.per-name {
+    font-size: 12px;
+    line-height: 12px;
+    font-weight: bold;
+    padding: 6px;
+    color: rgba(70, 70, 70, 1.00);
+}
+
+.per-art {
+    text-decoration: none;
+    font-size: 8px;
+    line-height: 10px;
+    padding-left: 6px;
+    padding-right: 6px;
+    color: rgba(90, 90, 90, 1.00);
+}
+
+.left-foot {
+    width: 100%;
+    text-align: center;
+    position: fixed;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    bottom: 0px;
+    font-size: 8px;
+    line-height: 40px;
+    background-color: rgba(250, 250, 250, 1.00);
+}
+
+/*************************右边栏***************************/
+#rightMenu {
+    overflow: hidden;
+    position: fixed;
+    z-index: 2;
+    width: 300px;
+    height: 100%;
+    padding: 0;
+    right: -300px;
+    bottom: 0;
+    border-left: 1px solid rgba(230, 230, 230, 1.00);
+    background-color: rgba(250, 250, 250, 1.00);
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+}
+
+#myHead {
+    float: left;
+    width: 36px;
+    height: 36px;
+    margin-right: 10px;
+}
+
+.right-m-n {
+    float: left;
+    font-size: 80%;
+    line-height: 14px;
+    font-weight: bold;
+    max-width: 100px;
+    max-height: 14px;
+    overflow: hidden;
+    color: rgba(90, 90, 90, 1.00);
+}
+
+.right-m-s {
+    float: left;
+    font-size: 10px;
+    line-height: 10px;
+    padding: 2px;
+    margin-left: 5px;
+    margin-right: 100px;
+    color: rgba(255, 255, 255, 1.00);
+    background-color: rgba(130, 117, 216, 1.00);
+}
+
+.right-m-sub {
+    position: relative;
+    overflow: hidden;
+    width: 160px;
+    height: 14px;
+    font-size: 80%;
+    line-height: 14px;
+    top: 8px;
+    color: rgba(90, 90, 90, 1.00);
+}
+
+#setItemBox {
+    width: 260px;
+    position: absolute;
+    z-index: 0;
+    top: 27px;
+    right: 27px;
+    transform: scale(0.1);
+    transform-origin: right top;
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+}
+
+.setting-item {
+    z-index: 2;
+    right: 20px;
+    top: 0;
+    border: none;
+    outline: none;
+    text-align: left;
+    user-select: none;
+    width: 100%;
+    height: 40px;
+    background-color: rgba(230, 230, 230, 1.00);
+    margin-top: 20px;
+    font-size: 14px;
+    line-height: 40px;
+    padding: 0px 20px 0px 20px;
+    color: rgba(55, 55, 55, 1.00);
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+}
+
+
+.right-style {
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    right: -300px;
+    padding: 0;
+    width: 300px;
+    height: 100%;
+    background-color: rgba(250, 250, 250, 1.00);
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+}
+
+.submit {
+    border: none;
+    outline: none;
+    width: 100%;
+    height: 40px;
+    margin-top: 30px;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 1.00);
+    background-color: rgba(130, 117, 216, 1.00);
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+}
+
+#changeInfo,
+#signOut {
+    width: 260px;
+    margin-left: 20px;
+}
+
+#closeNet,
+#closeAbout {
+    user-select: none;
+    cursor: pointer;
+}
+
+.clear-msg {
+    position: fixed;
+    width: 100%;
+    height: 40px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 1.00);
+    line-height: 40px;
+    text-align: center;
+    background-color: rgba(255, 120, 120, 1.00);
+    user-select: none;
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+}
+
+#logo {
+    float: left;
+    height: 20px;
+    margin: 20px 0px 0px 20px;
+}
+
+.logo-left {
+    float: left;
+    width: 0px;
+    height: 0px;
+    border-style: solid;
+    border-width: 4px;
+    border-color: rgba(230, 230, 230, 0.00) rgba(200, 200, 200, 1.00) rgba(200, 200, 200, 1.00) rgba(230, 230, 230, 0.00);
+}
+
+.logo-right {
+    float: left;
+    width: 20px;
+    height: 20px;
+    background-color: rgba(250, 250, 250, 1.00);
+}
+
+.logo-in {
+    width: 12px;
+    height: 1px;
+    background-color: rgba(130, 117, 216, 1.00);
+    margin: 0 auto;
+    margin-top: 4px;
+}
+
+.logo-text {
+    user-select: none;
+    margin-left: 10px;
+    float: left;
+    font-size: 18px;
+    line-height: 20px;
+    font-weight: bold;
+    padding: 0;
+    margin: 0;
+    margin-left: 10px;
+    color: rgba(250, 250, 250, 1.00);
+}
+
+#setBtn {
+    float: right;
+    padding: 0 20px 0 0;
+    margin: 20px 0px 0px 20px;
+    font-size: 18px;
+    line-height: 20px;
+    color: rgba(250, 250, 250, 1.00);
+    user-select: none;
+}
+
+#logRegBox {
+    opacity: 0;
+    overflow: auto;
+    position: fixed;
+    z-index: 3;
+    width: 92%;
+    height: 100%;
+    padding: 4%;
+    background-color: rgba(0, 0, 0, 0.00);
+    transform: scale(0);
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+}
+
+#logRegBox::-webkit-scrollbar {
+    display: none;
+}
+
+#lrMain {
+    position: relative;
+    max-width: 400px;
+    height: 380px;
+    text-align: center;
+    left: 0;
+    right: 0;
+    top: 50%;
+    margin: 0 auto;
+    margin-top: -250px;
+    padding: 0;
+    background-color: rgba(250, 250, 250, 1.00);
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+}
+
+#logTitle {
+    font-size: 20px;
+    line-height: 20px;
+    font-weight: bold;
+    padding: 20px 0 10px 0;
+    color: rgba(80, 80, 80, 1.00);
+}
+
+.input-box {
+    width: 88%;
+    height: 40px;
+    outline: none;
+    border: none;
+    padding: 4px;
+    margin: 0;
+    margin-top: 20px;
+    background-color: rgba(230, 230, 230, 1.00);
+    font-size: 14px;
+    text-align: center;
+    color: rgba(80, 80, 80, 1.00);
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+}
+
+#oldPsw,
+#newPsw,
+#checkNewPsw {
+    width: 250px;
+    margin-left: 20px;
+}
+
+#newPswSet {
+    width: 260px;
+    margin-left: 20px;
+}
+
+#checkPsw {
+    transform: scale(0);
+}
+
+#logBtn {
+    border: none;
+    outline: none;
+    float: left;
+    width: 45%;
+    height: 40px;
+    margin-top: 30px;
+    margin-bottom: 100px;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 1.00);
+    line-height: 40px;
+    text-align: center;
+    background-color: rgba(130, 117, 216, 1.00);
+    user-select: none;
+    transform: translateY(-50px);
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+}
+
+#regBtn {
+    border: none;
+    outline: none;
+    float: left;
+    width: 45%;
+    height: 40px;
+    margin: 30px 0 100px 20px;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 1.00);
+    line-height: 40px;
+    text-align: center;
+    background-color: rgba(94, 153, 255, 1.00);
+    user-select: none;
+    transform: translateY(-50px);
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+}
+
+#closeLogBox {
+    cursor: pointer;
+    user-select: none;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    width: 20px;
+    height: 20px;
+    font-size: 80%;
+    line-height: 20px;
+    color: rgba(255, 255, 255, 1.00);
+    background-color: rgba(255, 120, 120, 1.00);
+}
+
+.a {
+    color: rgba(250, 250, 250, 1.00);
+    user-select: none;
+    text-decoration: none;
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+}
+
+#userList {
+    margin-top: 20px;
+    padding: 20px;
+    overflow: scroll;
+    position: relative;
+    height: 90%;
+    bottom: 0;
+    padding-bottom: 600px;
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+}
+
+#userList::-webkit-scrollbar {
+    display: none;
+}
+
+.user-list-item {
+    cursor: pointer;
+    float: left;
+    padding: 6px;
+    margin-top: 16px;
+    width: 250px;
+    background-color: rgba(240, 240, 240, 1.00);
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+}
+
+.user-list-head {
+    float: left;
+    width: 36px;
+    height: 36px;
+}
+
+.user-list-name {
+    width: 50%;
+    float: left;
+    margin-left: 10px;
+    font-size: 80%;
+    font-weight: bold;
+    color: rgba(65, 65, 65, 1.00);
+}
+
+.user-list-info {
+    width: 60%;
+    float: left;
+    margin-left: 10px;
+    font-size: 70%;
+    color: rgba(55, 55, 55, 1.00);
+}
+
+#tips {
+    opacity: 1.0;
+    text-align: center;
+    position: fixed;
+    z-index: 20;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.00);
+    transform: scale(0);
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+}
+
+#tipsBody {
+    position: relative;
+    width: 300px;
+    max-height: 600px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    top: 50%;
+    padding: 20px;
+    background-color: rgba(250, 250, 250, 1.00);
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+}
+
+#tipsTitle {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 100%;
+    font-weight: bold;
+    color: rgba(55, 55, 55, 1.00);
+}
+
+#tipsContent {
+    text-align: center;
+    font-size: 80%;
+    color: rgba(55, 55, 55, 1.00);
+}
+
+#tipsBtn {
+    width: 100%;
+    height: 40px;
+    position: relative;
+    left: 0;
+    right: 0;
+    border: none;
+    outline: none;
+    margin-top: 20px;
+    background-color: rgba(130, 117, 216, 1.00);
+    color: rgba(255, 255, 255, 1.00);
+    font-size: 80%;
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+}
+
+#settingBtn {
+    user-select: none;
+    text-align: center;
+    cursor: pointer;
+    position: absolute;
+    z-index: 1;
+    top: 20px;
+    right: 20px;
+    width: 36px;
+    height: 36px;
+    border: 2px solid rgba(100, 100, 100, 1.00);
+    background-color: rgba(55, 55, 55, 0.00);
+    color: rgba(100, 100, 100, 0.00);
+    font-size: 70%;
+    line-height: 32px;
+    font-weight: bold;
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+}
+
+#closeUserMenu {
+    color: rgba(250, 250, 250, 1.00);
+}
+
+#uSetHead {
+    float: left;
+    text-align: center;
+    position: relative;
+    width: 44px;
+    height: 44px;
+    left: 0;
+    right: 0;
+    margin: 30px 0 0 20px;
+    padding: 4px;
+    background-color: rgba(250, 250, 250, 1.00);
+}
+
+.user-bg {
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 300px;
+    background-color: rgba(200, 200, 200, 1.00);
+}
+
+.user-bg-in {
+    width: 100%;
+    height: 100%;
+    background: url("../img/SILENCE.png") no-repeat center center;
+    background-size: cover;
+    filter: blur(30px);
+    transform: scale(1.2);
+}
+
+#newNameEdit {
+    float: left;
+    width: 100px;
+    height: 16px;
+    margin: 0;
+    margin-top: 30px;
+    margin-left: 10px;
+    outline: none;
+    border: none;
+    padding: 4px;
+    font-size: 66%;
+    font-weight: bold;
+    text-align: left;
+    color: rgba(255, 255, 255, 1.00);
+    transition: all 0.5s;
+    background-color: rgba(250, 250, 250, 0.20);
+}
+
+#newSignEdit {
+    float: left;
+    width: 180px;
+    height: 16px;
+    margin: 0;
+    margin-top: 4px;
+    margin-left: 10px;
+    outline: none;
+    border: none;
+    padding: 4px;
+    font-size: 66%;
+    text-align: left;
+    color: rgba(255, 255, 255, 1.00);
+    transition: all 0.5s;
+    background-color: rgba(250, 250, 250, 0.20);
+}
+
+#detailHead {
+    width: 80px;
+    height: 80px;
+    margin-left: 50%;
+    transform: translateX(-40px);
+    margin-top: 30px;
+}
+
+#detailName {
+    text-align: center;
+    font-weight: bold;
+}
+
+#detailSign,
+#regTime {
+    text-align: center;
+}
