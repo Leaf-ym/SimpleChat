@@ -19,7 +19,8 @@ function ConnectToServer() {
         console.log("web channel open");
         connectSuccess();
         window.channel = new QWebChannel(socket, function (channel) {
-            channel.objects.ChatUser.ShowUserMessage.connect(function (self, message) {
+            channel.objects.ChatUser.ShowUserMessage.connect(function (self, message, toID) {
+                console.log("ToID:"+toID);
                 var jsonArray = JSON.parse(message);
                 switch (jsonArray[1].MessageType) {
                     case 1:
@@ -55,7 +56,7 @@ function ConnectToServer() {
 
 function SendMessageToServer(type, message, toId = 0) {
     try {
-        channel.objects.ChatUser.SendUserMessage(type, message, toId, function (value) {});
+        channel.objects.ChatUser.SendUserMessage(type, message, toId, function (value) { });
     } catch (e) {
         errorInfo(e);
     }
@@ -63,7 +64,7 @@ function SendMessageToServer(type, message, toId = 0) {
 
 function UserRegister(name, password) {
     try {
-        channel.objects.ChatUser.UserRegister(name, password, function (value) {});
+        channel.objects.ChatUser.UserRegister(name, password, function (value) { });
     } catch (e) {
         errorInfo(e);
     }
@@ -71,7 +72,7 @@ function UserRegister(name, password) {
 
 function UserLogin(name, password) {
     try {
-        channel.objects.ChatUser.UserLogin(name, password, function (value) {});
+        channel.objects.ChatUser.UserLogin(name, password, function (value) { });
     } catch (e) {
         errorInfo(e);
     }
@@ -79,18 +80,39 @@ function UserLogin(name, password) {
 
 function UserSignOut() {
     console.log("用户注销");
+    try {
+        channel.objects.ChatUser.UserLogout(function (value) { });
+    } catch (e) {
+        errorInfo(e);
+    }
 }
 
-function changeHead() {
+function changeHead(filestring) {
     console.log("更改用户头像");
+    try {
+        channel.objects.ChatUser.UserChangeFavicon(filestring, function (value) { });
+    } catch (e) {
+        errorInfo(e);
+    }
 }
 
 function changeUserInfo(userName, userSign) {
     console.log("用户修改信息");
+    try {
+        channel.objects.ChatUser.UserChangeInfo(userName, userSign, function (value) { });
+    } catch (e) {
+        errorInfo(e);
+    }
 }
 
 function changePsw(oldPsw, newPsw) {
     console.log("用户修改密码");
     console.log(oldPsw);
     console.log(newPsw);
+    try {
+        channel.objects.ChatUser.UserChangePassword(oldPsw, newPsw, function (value) { });
+    } catch (e) {
+        errorInfo(e);
+    }
+
 }
