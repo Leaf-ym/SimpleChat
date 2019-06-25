@@ -1,0 +1,189 @@
+﻿<!DOCTYPE html>
+<html lang="cn">
+
+<head>
+    <title>简聊</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="utf-8" />
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link href="css/style.css" type="text/css" rel="stylesheet">
+    <link href="css/animate.css" type="text/css" rel="stylesheet">
+    <link href="css/chat.css" type="text/css" rel="stylesheet">
+    <link href="css/colors.css" type="text/css" rel="stylesheet">
+    <link href="css/btn.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+    <section id="whole">
+        <nav class="nav theme">
+            <div class="nav-bar">
+                <div id="logo" title="Logo">
+                    <div class="logo-left"></div>
+                    <div class="logo-right">
+                        <div class="logo-in"></div>
+                        <div class="logo-in"></div>
+                        <div class="logo-in" style="width:8px; margin: 0; margin-left: 4px; margin-top: 4px"></div>
+                    </div>
+                    <p class="logo-text">简聊</p>
+                </div>
+                <p id="setBtn"></p>
+            </div>
+        </nav>
+        <div id="chatBox">
+        </div>
+        <div id="editBox">
+            <div id="toolBar">
+                <div id="picBox" title="发送图片">
+                    <div class="pic-1">
+                        <div class="pic-2"></div>
+                        <div class="pic-3"></div>
+                        <div style="width:6px;height: 6px;"></div>
+                        <div class="pic-4"></div>
+                        <div class="pic-5"></div>
+                        <div style="width:6px;height: 6px;"></div>
+                        <div class="pic-6"></div>
+                        <div class="pic-7"></div>
+                    </div>
+                </div>
+                <img id="fileBox" title="发送文件" class="fun-box" src="img/file.svg">
+                <input type="file" id="files1" style="display: none;" />
+                <input type="file" id="files2" style="display: none;" />
+                <div id="connect" title="正在连接服务器">⊙</div>
+                <input id="send" class="theme" type="button" title="发送" value="发送">
+            </div>
+            <textarea id="edit" placeholder="登陆后才能发送消息" disabled="disabled"></textarea>
+        </div>
+    </section>
+    <section id="leftMenu">
+        <p class="menu-title" style="margin-bottom:30px">消息列表</p>
+        <div id="chatList">
+        </div>
+    </section>
+    <section id="rightMenu">
+        <div style="height: 36px;padding: 20px">
+            <div id="myHead"><img src="img/def.svg"></div>
+            <div id="myName" class="right-m-n">游客</div>
+            <div id="myState" class="right-m-s">未登录</div>
+            <div title="点击头像登录或注册" id="mySign" class="right-m-sub">点击头像登录或注册</div>
+        </div>
+        <div id="settingBtn">收起</div>
+        <div id="setItemBox">
+            <input title="设置用户基本信息，清除数据" type="button" id="userSettings" class="setting-item"
+                value="用户设置                                      〉">
+            <input title="修改密码" type="button" id="pswSettings" class="setting-item"
+                value="密码设置                                      〉">
+            <input title="加入多人坦克游戏" type="button" id="addTank" class="setting-item"
+                value="坦克大战                                      〉">
+            <input title="简介，功能，开发者以及版权声明" type="button" id="about" class="setting-item"
+                value="关于简聊                                      〉">
+        </div>
+        <div id="userInfoBox" class="right-style">
+            <p id="closeDetail" class="menu-title">〈&nbsp;&nbsp;用户详情</p>
+            <img src="/img/def.svg" alt="#" id="detailHead">
+            <p id="detailName">昵称 : ID</p>
+            <p id="detailSign">这个人什么都没有留下</p>
+            <p id="regTime">注册时间:20xx.xx.xx</p>
+            <div id="sendPerMsg">发送消息</div>
+        </div>
+        <div id="user-setting-menu" class="right-style">
+            <div class="user-bg">
+                <div class="user-bg-in"></div>
+            </div>
+            <p id="closeUserMenu" class="menu-title">〈&nbsp;&nbsp;用户设置</p>
+            <img id="uSetHead" src="img/def-boy.svg">
+            <input id="newNameEdit" type="text" placeholder="新的昵称" value="游客">
+            <input id="newSignEdit" type="text" placeholder="新的签名">
+            <input id="changeInfo" type="button" value="确认修改" class="submit theme">
+            <input id="signOut" type="button" value="注销账户" class="submit war-c" style="margin-top: 10px">
+        </div>
+        <div id="net-menu" class="right-style">
+            <p id="closeNet" class="menu-title">〈&nbsp;&nbsp;密码设置</p>
+            <input id="oldPsw" class="input-box" type="password" placeholder="当前密码/OLDPASSWD">
+            <input id="newPsw" class="input-box" type="password" placeholder="新的密码/NEWPASSWD">
+            <input id="checkNewPsw" class="input-box" type="password" placeholder="确认密码/CHECKPSW">
+            <input id="newPswSet" class="submit dot-c" type="button" value="确认修改">
+        </div>
+        <div id="about-menu" class="right-style">
+            <p id="closeAbout" class="menu-title">〈&nbsp;&nbsp;关于简聊</p>
+            <p class="menu-title2" style="margin-top:30px">简介</p>
+            <p class="left-article">这里是简聊(SimpleChat)，一个简单的多人聊天网站。2019.6期末作品，UI采用极简扁平方正设计，<b
+                    style="color:rgba(94, 153, 255, 1.00);">多端适配</b>，后台使用Qt+Websocket实现。</p>
+            <p class="menu-title2">开发者</p>
+            <a href="https://github.com/o-TwT-o/SimpleChat">
+                <div class="per-box">
+                    <div class="per-h"><img alt="#" src="img/TwT.png" style="width:100%">
+                    </div>
+                    <div style="float:left">
+                        <div class="per-name">TwT</div>
+                        <div class="per-art">后台服务、网络通信、Web前端实现</div>
+                    </div>
+                </div>
+            </a>
+            <a href="http://me.liugl.cn">
+                <div class="per-box">
+                    <div class="per-h"><img alt="#" src="img/SILENCE.png" style="width:100%">
+                    </div>
+                    <div style="float:left">
+                        <div class="per-name">SILENCE</div>
+                        <div class="per-art">UI设计、交互设计、Web前端实现</div>
+                    </div>
+                </div>
+            </a>
+            <div class="per-box">
+                <div class="per-h"><img alt="#" src="img/zyb.jpg" style="width:100%">
+                </div>
+                <div style="float:left">
+                    <div class="per-name">Origin</div>
+                    <div class="per-art">编写完善需求文档，提供项目思路</div>
+                </div>
+            </div>
+            <div class="per-box">
+                <div class="per-h"><img alt="#" src="img/yq.jpg" style="width:100%">
+                </div>
+                <div style="float:left">
+                    <div class="per-name">云淡ツ枫钦</div>
+                    <div class="per-art">编写完善需求文档，测试BUG</div>
+                </div>
+            </div>
+            <p class="menu-title2">版权声明</p>
+            <p class="left-article"><a
+                    href="https://github.com/xSILENCEx/web_chat">github</a>有完整的提交记录，外观设计版权归SILENCE个人所有，禁止抄袭、二改并作商业用途，盗用必究！<a
+                    href="https://github.com/o-TwT-o/SimpleChat">后台代码点击这里</a>。</p>
+            <div style="height:100px"></div>
+            <p class="left-foot">Copyright © 2019 蜀ICP备19010209号</p>
+        </div>
+        <div id="userList">
+            <p class="menu-title2" style="margin: 0;font-size: 90%">在线用户</p>
+        </div>
+    </section>
+    <section id="logRegBox">
+        <div id="lrMain">
+            <div id="closeLogBox">×</div>
+            <p id="logTitle">登录</p>
+            <form>
+                <input id="username" class="input-box" type="text" placeholder="用户名/USERNAME">
+                <input id="password" class="input-box" type="password" placeholder="密码/PASSWORD">
+                <input id="checkPsw" class="input-box" type="password" placeholder="确认密码/CHECK">
+                <input id="regBtn" type="button" value="注册账号">
+                <input id="logBtn" type="button" value="确认登录">
+            </form>
+        </div>
+    </section>
+    <section id="tips">
+        <div id="tipsBody">
+            <p id="tipsTitle">提示</p>
+            <p id="tipsContent">这是一条提示信息,啊哈哈哈哈哈哈哈哈哈</p>
+            <input id="tipsBtn" type="button" value="确定">
+        </div>
+    </section>
+    <script type="text/javascript" src="js/main_SILENCE.js"></script>
+    <script type="text/javascript" src="js/system_SILENCE.js"></script>
+    <script type="text/javascript" src="js/object_SILENCE.js"></script>
+    <script type="text/javascript" src="js/qwebchannel_TwT_lib.js"></script>
+    <script type="text/javascript" src="js/reconnecting-websocket.min_TwT_lib.js"></script>
+    <script type="text/javascript" src="js/reconnecting-websocket_TwT_lib.js"></script>
+    <script type="text/javascript" src="js/DateStream_TwT.js"></script>
+</body>
+
+</html>
