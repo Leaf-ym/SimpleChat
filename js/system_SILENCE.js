@@ -8,7 +8,7 @@ onload = function () {
     softWindow();
 
     /////自动发送系统提示信息
-    new MessageItem("群聊", "欢迎使用简聊Web！试试左滑右滑~<br>Ctrl+Enter发送消息，点击logo打开左边栏(大屏幕忽略此条)。", "../img/def.svg", 0, 0).addToWin();
+    new MessageItem("群聊", "欢迎使用简聊Web！试试左滑右滑~<br>Ctrl+Enter发送消息，点击logo打开左边栏(大屏幕忽略此条)。", "../img/def.svg", 0, 0, 1).addToWin();
 }
 
 function setEditState(state) {
@@ -49,13 +49,12 @@ function checkCookie(value) { //检查cookie
 }
 
 /////////接收来自服务器的消息
-function ReceiveByServer(self, head, name, msg, fromId = 0) {
+function ReceiveByServer(type, self, head, name, msg, fromId = 0) {
     if (self) {
-        new MessageItem(name, msg, head, 1, fromId).addToWin();
+        new MessageItem(name, msg, head, 1, fromId, type).addToWin();
     } else {
-        new MessageItem(name, msg, head, 0, fromId).addToWin();
+        new MessageItem(name, msg, head, 0, fromId, type).addToWin();
     }
-
 }
 
 /////弹出提示信息，支持富文本
@@ -149,6 +148,7 @@ function signOut() {
     isRightOpen = false;
 
     isLogin = false;
+    location.reload();
 }
 
 ////文件发送
@@ -171,7 +171,7 @@ document.getElementById("files2").onchange = function () {
             let jsonObject = {}
             jsonObject.filename = file.name;
             jsonObject.file = evt.target.result;
-            SendMessageToServer(3, JSON.stringify(jsonObject));
+            SendMessageToServer(3, JSON.stringify(jsonObject), chatObj);
         }, 1000);
     }
     document.getElementById("files2").value = "";
@@ -196,7 +196,7 @@ document.getElementById("files1").onchange = function () {
             let jsonObject = {}
             jsonObject.filename = file.name;
             jsonObject.file = evt.target.result;
-            SendMessageToServer(2, JSON.stringify(jsonObject))
+            SendMessageToServer(2, JSON.stringify(jsonObject), chatObj);
         }, 1000);
 
     }

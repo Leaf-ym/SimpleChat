@@ -37,7 +37,7 @@ function meSend(msg) {
     event.returnValue = false;
     if (msg.length != 0) {
         ///向服务器发送消息
-        SendMessageToServer(1, getEdit());
+        SendMessageToServer(1, getEdit(), chatObj);
         clearEdit();
     } else {
         console.log("内容为空");
@@ -63,10 +63,11 @@ document.getElementById("whole").addEventListener("click", function () {
     }
 });
 //////Ctrl+Enter键发送
-document.onkeydown = function (e) {
-    let isEditing = document.getElementById("edit");
-    if ((13 == e.keyCode && e.ctrlKey) && isEditing == document.activeElement) {
+document.getElementById("edit").onkeydown = function (e) {
+    if (13 == e.keyCode && e.ctrlKey) {
         meSend(getEdit());
+    } else if (13 == e.keyCode) {
+        this.value = this.value + "<br>";
     }
 }
 ///////手势判断
@@ -302,7 +303,6 @@ function addUserItem(obj, name, subTitle, headUrl, info) {
 }
 
 //用户详细信息
-
 document.getElementById("closeDetail").addEventListener("click", function () {
     closeUserDetail();
 });
@@ -310,7 +310,7 @@ document.getElementById("closeDetail").addEventListener("click", function () {
 function openUserDetail(info) {
     let userInfo = JSON.parse(info);
     document.getElementById("detailHead").setAttribute("src", "../UserFavicon/" + userInfo.UserFavicon);
-    document.getElementById("detailName").innerHTML = userInfo.UserName + "  ID: " + userInfo.UserID;
+    document.getElementById("detailName").innerHTML = userInfo.UserName + "  ID:" + userInfo.UserID;
     document.getElementById("detailSign").innerHTML = userInfo.UserProfile;
     document.getElementById("regTime").innerHTML = "注册时间:20xx.xx.xx";
     if (getCookie("userID") == userInfo.UserID) {
@@ -324,6 +324,20 @@ function openUserDetail(info) {
 function closeUserDetail() {
     document.getElementById("userInfoBox").style.transform = "translateX(0px)";
 }
+
+document.getElementById("sendPerMsg").addEventListener("click", function (e) {
+    chatObj = parseInt(document.getElementById("detailName").innerHTML.split(":", 2)[1]);
+    if (!document.getElementById("W" + chatObj)) {
+        let winId = "W" + chatObj;
+        let hUrl = document.getElementById("detailHead").getAttribute("src");
+        let n = document.getElementById("detailName").innerHTML.split(" ", 2)[0];
+        let t = new MessageItem(n, "Echo", hUrl, 1, chatObj);
+        t.addToWin()
+        t.destroy();
+        closeRight();
+        isRightOpen = false;
+    }
+});
 
 //////点击logo打开左侧栏
 document.getElementById("logo").addEventListener("click", function (event) {
@@ -393,6 +407,12 @@ function getPsw() {
     } else {
         console.log("密码不规范");
         return false;
+    }
+}
+
+document.getElementById("password").onkeydown = function (e) {
+    if (e.keyCode == 13) {
+        UserLogin(getUserName(), getPsw());
     }
 }
 
@@ -529,8 +549,8 @@ function bigScreen(width) {
     isRightOpen = true;
     isLeftOpen = true;
     let d = (width - 1400) / 2;
-    document.getElementById("rightMenu").style.transform = "translateX(-" + d + "px) translateY(160px)";
-    document.getElementById("leftMenu").style.transform = "translateX(" + d + "px) translateY(160px)";
+    document.getElementById("rightMenu").style.transform = "translateX(-" + d + "px) translateY(60px)";
+    document.getElementById("leftMenu").style.transform = "translateX(" + d + "px) translateY(60px)";
     document.getElementById("whole").style.transform = "translateX(0px)";
 }
 

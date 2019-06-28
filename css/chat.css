@@ -45,11 +45,12 @@
     overflow: auto;
     min-width: 16px;
     min-height: 16px;
-    max-width: 80%;
+    max-width: 76%;
     margin-top: 12px;
     padding: 10px;
     font-size: 14px;
     line-height: 20px;
+    word-wrap: break-word;
     color: rgba(255, 255, 255, 1.00);
     background-color: rgba(130, 117, 216, 1.00);
 }
@@ -186,6 +187,15 @@
     line-height: 40px;
     margin: 0 auto;
     margin-top: 50px;
+    background-color: rgba(50, 50, 50, 1.00);
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+}
+
+#sendPerMsg:hover {
     background-color: rgba(130, 117, 216, 1.00);
     transition: all 0.5s;
     -webkit-transition: all 0.5s;

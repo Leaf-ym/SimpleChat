@@ -19,17 +19,18 @@ function ConnectToServer() {
         console.log("web channel open");
         connectSuccess();
         window.channel = new QWebChannel(socket, function (channel) {
-            channel.objects.ChatUser.ShowUserMessage.connect(function (self, message) {
+            channel.objects.ChatUser.ShowUserMessage.connect(function (self, message, toID) {
                 var jsonArray = JSON.parse(message);
-                switch (jsonArray[1].MessageType) {
+                var t = jsonArray[1].MessageType;
+                switch (t) {
                     case 1:
-                        ReceiveByServer(self, '../UserFavicon/' + jsonArray[0].UserFavicon, jsonArray[0].UserName, jsonArray[1].MessageContent);
+                        ReceiveByServer(t, self, '../UserFavicon/' + jsonArray[0].UserFavicon, jsonArray[0].UserName, jsonArray[1].MessageContent, toID);
                         break;
                     case 2:
-                        ReceiveByServer(self, '../UserFavicon/' + jsonArray[0].UserFavicon, jsonArray[0].UserName, '<img width=100% height=auto src="../File/' + jsonArray[1].MessageContent + '"/>');
+                        ReceiveByServer(t, self, '../UserFavicon/' + jsonArray[0].UserFavicon, jsonArray[0].UserName, '<img width=100% height=auto src="../File/' + jsonArray[1].MessageContent + '"/>', toID);
                         break;
                     case 3:
-                        ReceiveByServer(self, '../UserFavicon/' + jsonArray[0].UserFavicon, jsonArray[0].UserName, '<a href="../File/' + jsonArray[1].MessageContent + '">' + jsonArray[1].MessageContent + '</a>');
+                        ReceiveByServer(t, self, '../UserFavicon/' + jsonArray[0].UserFavicon, jsonArray[0].UserName, '<a href="../File/' + jsonArray[1].MessageContent + '">' + jsonArray[1].MessageContent + '</a>', toID);
                         break;
                 }
             });
@@ -79,18 +80,39 @@ function UserLogin(name, password) {
 
 function UserSignOut() {
     console.log("用户注销");
+    try {
+        channel.objects.ChatUser.UserLogout(function (value) {});
+    } catch (e) {
+        errorInfo(e);
+    }
 }
 
-function changeHead() {
+function changeHead(fileString) {
     console.log("更改用户头像");
+    try {
+        channel.objects.ChatUser.UserChangeFavicon(fileString, function (value) {});
+    } catch (e) {
+        errorInfo(e);
+    }
 }
 
 function changeUserInfo(userName, userSign) {
     console.log("用户修改信息");
+    try {
+        channel.objects.ChatUser.UserChangeInfo(userName, userSign, function (value) {});
+    } catch (e) {
+        errorInfo(e);
+    }
 }
 
 function changePsw(oldPsw, newPsw) {
     console.log("用户修改密码");
     console.log(oldPsw);
     console.log(newPsw);
+    try {
+        channel.objects.ChatUser.UserChangePassword(oldPsw, newPsw, function (value) {});
+    } catch (e) {
+        errorInfo(e);
+    }
+
 }
