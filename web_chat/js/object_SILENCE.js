@@ -1,16 +1,19 @@
 class MessageItem {
-    constructor(name, content, headUrl, dir, id) {
+    constructor(name, content, headUrl, dir, id, msgType) {
         this.name = name;
         this.content = content;
         this.headUrl = headUrl;
         this.dir = dir;
         this.id = "W" + id;
+        this.uId = id;
+        this.msgType = msgType;
+        this.obj;
     }
 
     addToWin() {
         if (document.getElementById(this.id)) {
 
-            chatItems[this.id].refresh(this.headUrl, this.name, this.content);
+            chatItems[this.id].refresh(this.headUrl, this.content, this.name, this.msgType);
 
             let newMsg = document.createElement("div");
             newMsg.setAttribute("class", "msg-item");
@@ -25,24 +28,22 @@ class MessageItem {
             msg.innerHTML = this.content;
 
             if (this.dir == 0) {
-
                 h.setAttribute("class", "head-img");
                 name.setAttribute("class", "user-name");
                 msg.setAttribute("class", "msg-box dot-c");
-
             } else {
-
                 h.setAttribute("class", "head-img2");
                 name.setAttribute("class", "user-name2");
                 msg.setAttribute("class", "msg-box2 theme");
-
             }
 
             newMsg.appendChild(h);
             newMsg.appendChild(name);
             newMsg.appendChild(msg);
 
-            document.getElementById(this.id).appendChild(newMsg);
+            this.obj = newMsg;
+
+            document.getElementById(this.id).appendChild(this.obj);
             scrollToBottom(newMsg);
 
         } else {
@@ -51,6 +52,10 @@ class MessageItem {
             chatItems[this.id] = chatItem;
             this.addToWin();
         }
+    }
+
+    destroy() {
+        document.getElementById(this.id).removeChild(this.obj);
     }
 }
 
@@ -68,6 +73,7 @@ class ChatWindow {
         document.getElementById("chatBox").appendChild(newWindow);
         this.obj = newWindow;
         this.obj.style.transform = "translateX(-100%) scale(0.5)";
+        chatObj = parseInt(this.id.split("", 2)[1]);
     }
 
     open() {
@@ -82,6 +88,7 @@ class ChatWindow {
             closeLeft();
             isLeftOpen = false;
         }
+        chatObj = parseInt(this.id.split("", 2)[1]);
     }
 
     close() {
@@ -103,6 +110,7 @@ class ChatWindow {
 }
 
 let nowWindow;
+let chatObj = 0;
 let chatItems = [];
 class ChatItem {
 
@@ -136,7 +144,7 @@ class ChatItem {
 
         let itemMsg = document.createElement("div");
         itemMsg.setAttribute("class", "chat-list-info");
-        itemMsg.innerHTML = this.lastMsg;
+        itemMsg.innerHTML = this.name + " : " + this.lastMsg;
         this.infoBox = itemMsg;
 
         newItem.appendChild(itemHead);
@@ -163,9 +171,19 @@ class ChatItem {
 
     }
 
-    refresh(head, name, info) {
+    refresh(head, info, name, type) {
         this.headBox.setAttribute("src", head);
-        this.nameBox.innerHTML = name;
-        this.infoBox.innerHTML = info;
+        switch (type) {
+            case 1:
+                this.infoBox.innerHTML = name + " : " + info;
+                break;
+            case 2:
+                this.infoBox.innerHTML = name + " : " + "[图片]";
+                break;
+            case 3:
+                this.infoBox.innerHTML = name + " : " + "[文件]";
+                break;
+        }
+
     }
 }
