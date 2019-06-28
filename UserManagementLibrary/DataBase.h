@@ -19,6 +19,7 @@ public:
 	void CreatBaseDDataBase();
 	void OpenDataBase();
 	bool UserRegister(QString, QString);
+	int UserCheckName(QString name);
 	int UserSelectID(QString, QString);
 	User UserSelectAll(int);
 	bool UserChangeAll(User);

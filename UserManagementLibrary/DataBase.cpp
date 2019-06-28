@@ -73,6 +73,21 @@ bool DataBase::UserRegister(QString name, QString password)
 		return false;
 	}
 }
+int DataBase::UserCheckName(QString name)
+{
+	if (userDataBase.isOpen())
+	{
+		QSqlQuery sqlQuery(userDataBase);
+		sqlQuery.exec("select count(*) from user WHERE name='" + name + "'");
+		sqlQuery.next();
+		return sqlQuery.value(0).toInt();
+	}
+	else
+	{
+		qDebug() << tr("Not Connect To UserDataBase.");
+		return -1;
+	}
+}
 int DataBase::UserSelectID(QString name, QString password)
 {
 	if (userDataBase.isOpen())

@@ -67,6 +67,11 @@ void ChatUser::ReceiveUserlist(QString userlist)
 }
 bool ChatUser::UserRegister(QString name, QString password)
 {
+	if (db->UserCheckName(name) != 0)
+	{
+		emit ShowServerTips(2, QString::fromLocal8Bit("用户名被占用!"));
+		return false;
+	}
 	int id = db->UserSelectID(name, password);
 	if (id == -1)
 	{
@@ -167,15 +172,29 @@ bool ChatUser::UserChangeInfo(QString name, QString profile)
 {
 	if (user.ID != -1)
 	{
-		User u = user;
-		u.Name = name;
-		u.Profile = profile;
-		if (db->UserChangeAll(u))
+		if (db->UserCheckName(name) != 0 && user.Name != name)
 		{
-			user = db->UserSelectAll(u.ID);
-			emit ShowUserInfo(QJsonDocument(user.ConversionJson()).toJson());
-			emit VisitorConversionUser(this);
-			emit ShowServerTips(1, QString::fromLocal8Bit("用户信息更改成功!"));
+			emit ShowServerTips(2, QString::fromLocal8Bit("用户名被占用!"));
+			return false;
+		}
+		else
+		{
+			User u = user;
+			u.Name = name;
+			u.Profile = profile;
+			if (db->UserChangeAll(u))
+			{
+				user = db->UserSelectAll(u.ID);
+				emit ShowUserInfo(QJsonDocument(user.ConversionJson()).toJson());
+				emit VisitorConversionUser(this);
+				emit ShowServerTips(1, QString::fromLocal8Bit("用户信息更改成功!"));
+				return true;
+			}
+			else
+			{
+				emit ShowServerTips(1, QString::fromLocal8Bit("用户信息更改失败!"));
+				return false;
+			}
 		}
 	}
 	emit ShowServerTips(2, QString::fromLocal8Bit("未登录!"));
@@ -211,17 +230,17 @@ bool ChatUser::UserChangeFavicon(QString filestring)
 	QString fileType = jsonObject.value("filename").toString().split(".").last();
 	if (user.Favicon != "-1.svg")
 		QFile("../UserResource/UserFavicon/" + user.Favicon).remove();
-	QString filename = "../UserResource/UserFavicon/" + QString::number(user.ID) + fileType;
+	QString filename = "../UserResource/UserFavicon/" + QString::number(user.ID)+"."+ fileType;
 	QFile file(filename);
 	if (file.open(QIODevice::WriteOnly))
 	{
 		file.write(byteArray2);
 		file.close();
-		user.Favicon = filename;
+		user.Favicon = QString::number(user.ID) + "." + fileType;
 		if (db->UserChangeAll(user))
 			user = db->UserSelectAll(user.ID);
+		return true;
 	}
-	//emit ShowServerTips(2, QString::fromLocal8Bit("未登录!"));
 	return false;
 }
 void ChatUser::UserChangePermission(int permission)
@@ -251,4 +270,10 @@ bool ChatUser::UserCheckLogin(int id)
 		}
 	}
 	return false;
+}
+QJsonObject ChatUser::ConversionJson()
+{
+	QJsonObject json = user.ConversionJson();
+	json.insert("UserIP", ((QWebSocket*)this->parent()->parent()->parent())->peerAddress().toString());
+	return json;
 }

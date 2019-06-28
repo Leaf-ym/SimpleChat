@@ -22,6 +22,7 @@ public:
 	DataBase* db;
 	QList<ChatUser*>* loginUserList;
 	User user;
+	QJsonObject ConversionJson();
 public slots:
 	bool UserRegister(QString, QString);
 	bool UserLogin(QString, QString);

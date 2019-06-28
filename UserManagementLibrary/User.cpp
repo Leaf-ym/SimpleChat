@@ -37,6 +37,6 @@ QJsonObject User::ConversionJson()
 		json.insert("UserFavicon", "-1.svg");
 	else
 		json.insert("UserFavicon", Favicon);
-	//json.insert("UserPermission", Permission);
+	json.insert("UserPermission", Permission);
 	return json;
 }

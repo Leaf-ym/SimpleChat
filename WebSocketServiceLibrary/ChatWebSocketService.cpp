@@ -97,7 +97,7 @@ QString ChatWebSocketService::UserListConversionJson()
 	jsonArray.insert(0, json);
 	for (int i = 0; i < loginUserList.size(); i++)
 	{
-		jsonArray.insert(i + 1, loginUserList[i]->user.ConversionJson());
+		jsonArray.insert(i + 1, loginUserList[i]->ConversionJson());
 	}
 	return QJsonDocument(jsonArray).toJson();
 }
